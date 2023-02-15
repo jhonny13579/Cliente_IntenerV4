@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+  <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+  <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel='stylesheet'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel='stylesheet'>
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-info">
+    <div class="container-fluid">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Ver Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Opciones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><hr class="dropdown-divider"> <a class="dropdown-item" type="button" href="logout"><box-icon name='log-out'></box-icon> Logout</a></li>
+              <li></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mantenimiento de Empleados/Usuarios
+            </a>
+            <ul class="dropdown-menu">
+              <li><hr class="dropdown-divider"> <a class="dropdown-item" type="button" href="/create_user">Registrar Empleado</a></li>
+              <li><hr class="dropdown-divider"> <a class="dropdown-item" type="button" href="/list_users">Lista de Empleados/Usuarios</a></li>
+               
+             
+           
+              <li></li>
+            </ul>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class="nav-link disabled" hidden>Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+  
+  <br>
+  <br>
+  <h1></h1>
+  <h1></h1>
+  <div id="div_contrato" class="container mt-4">
+    <div class="card border-secondary">
+      <div class="card-header">Registrar Pago del Mes</div>
+      <div class="card-body">
+
+        <form action="/registrarPago" method="POST" id="form_contrato" >
+          <% let date = new Date(); %>
+             <input hidden  id="fecha_abono" name="fecha_abono"  tabindex="1" value="<%= fechaHoyComprobar %>">
+             <input hidden  id="fecha_vencimiento" name="fecha_vencimiento"  tabindex="1" value="<%= fechaSinProrrogaFormato %>">
+            <input hidden id="id_cli" name="id_cli"  tabindex="1" value="<%= resultados.id_cliente %>">
+           
+            <input hidden id="id_servicio" name="id_servicio"  tabindex="1" value="<%= resultados.id_servicio %>">
+            <input hidden id="id_contrato" name="id_contrato"  tabindex="1" value="<%= resultados.id_contrato %>">
+            <input hidden id="estado_cli" name="estado_cli"  tabindex="1" value="<%= estado_cliente %>">
+            <input hidden id="dias_diferencia" name="dias_diferencia"  tabindex="1" value="<%= resultadoSinProrroga %>">
+            <input hidden id="tiene_prorroga" name="tiene_prorroga"  tabindex="1" value="false">
+         
+
+
+
+           
+            <div>
+              <p> </p>
+            <p>DETALLES DEL PAGO DEL CLIENTE : </p>
+            Fecha de hoy --- Fecha Abono: <%= fechaHoyComprobar %>
+            Hora: <%= date.toLocaleTimeString() %>
+
+          
+
+          
+            <p id="fecha_vencimiento121">Fecha de Vencimiento del mes: <%= fechaSinProrrogaFormato %></p>
+            <p id="estado_dias">Estado en dias :  <%= resultadoSinProrroga %></p>
+            
+            <p id="nombrescompletos">Nombres Completos del Cliente : <%= resultados.nombres %> <%= resultados.apellidos %></p>
+            <p id="tiposervicio">Pago de Servicio de : <%= resultados.id_servicio %></p>
+            <p id="costoservicio">Cost de Servicio de : S./<%= resultados.costo_servicio %></p>
+            <p>Deuda:S./<%= deuda_cliente %> </p>
+
+          </div>  
+            
+            
+          <div class="mb-3">
+            
+            <label for="Observaciones" class="form-label">Observaciones </label>
+            <input type="text" class="form-control" id="diapago" name="diapago" tabindex="1">
+          </div>
+          <div class="mb-3">  
+            
+            <label class="form-label">Establecer Prorroga :  </label>  
+            <input type="checkbox" id="id_prorroga" class="prorroga-checkbox" onclick="actualizarResultado(+<%=resultados.id_cliente %>)" >
+          </div>
+      
+     
+      
+          <button onclick="confirmaContrato(event)" type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+          <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+      
+      function actualizarResultado(idCliente) {
+
+        let resultado;
+
+        let diferenciaDias = <%= diferenciaEnDias %> ;
+       
+               diferenciaDias = parseInt(diferenciaDias);
+        let diferenciaDiasProrroga = diferenciaDias+2;
+        console.log(diferenciaDias);
+        console.log(diferenciaDiasProrroga);
+  const checkbox = document.getElementById('id_prorroga');
+  const estadoDias = document.getElementById('estado_dias');
+  const diasAtraso = document.getElementById('dias_diferencia');
+  const prorroga = document.getElementById('tiene_prorroga');
+
+
+
+  if (checkbox.checked) {
+    // Aquí puedes hacer una llamada a una API o realizar algún cálculo para obtener el nuevo resultado
+   
+   
+ 
+
+
+    if (diferenciaDiasProrroga < 0) {
+
+      resultado = "La fecha vencio hace " + Math.abs(diferenciaDiasProrroga) + " días";
+          } else if(diferenciaDiasProrroga>=0){
+            resultado = "Faltan " + diferenciaDiasProrroga + " días para la fecha límite";
+          }
+
+          estadoDias.innerHTML = 'Estado en días: ' + resultado;
+          diasAtraso.value = 'Estado en días: ' + resultado;
+          prorroga.value = checkbox.checked;
+      
+    console.log(checkbox.checked);
+
+    fetch(`/formato_pago1/${idCliente}?checkbox=true`)
+      .then(response => {
+        console.log('Solicitud GET exitosa');
+       
+
+
+      })
+      .catch(error => {
+        console.error('Error en la solicitud GET:', error);
+      });
+
+
+
+  } else {
+
+    if (diferenciaDias < 0) {
+
+resultado = "La fecha vencio hace " + Math.abs(diferenciaDias) + " días";
+} else if(diferenciaDias>=0){
+      resultado = "Faltan " + diferenciaDias + " días para la fecha límite";
+    }
+
+    
+    estadoDias.innerHTML = 'Estado en días: ' + resultado ;
+    diasAtraso.value = 'Estado en días: ' + resultado ;
+    prorroga.value = checkbox.checked;
+    console.log(checkbox.checked);
+  
+    fetch(`/formato_pago1/${idCliente}?checkbox=false`)
+      .then(response => {
+        console.log('Solicitud GET exitosa');
+       ;
+      })
+      .catch(error => {
+        console.error('Error en la solicitud GET:', error);
+      });
+
+
+
+  } 
+
+   
+}
+
+
+
+
+
+      
+function confirmaContrato(event){
+      event.preventDefault();
+      Swal.fire({
+      title: 'Guardar Contrato ?',
+      icon: 'info' ,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor : '#d33',
+      confirmButtonText: 'Confirmar',
+     
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+     
+
+      if (result.isConfirmed) {
+        Swal.fire('Guardado!', '', 'success')
+        setTimeout(() => {
+          document.getElementById('form_contrato').submit();
+       
+
+        } , 1000);
+         
+      
+
+      } else if (result.isDenied) {
+        Swal.fire('No se ha Guardado', '', 'info')
+       
+      }
+    })
+    }
+    </script>
+</body>
+
+</html>

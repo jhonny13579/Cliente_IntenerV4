@@ -1,0 +1,92 @@
+body{
+    background-color: #f5f5f5;
+    font-family: roboto;
+    margin: auto;
+    text-align: center;
+}
+
+.login-form , container{
+    width: 300px;
+    margin:0 auto
+}
+
+.login-form h1 {
+    text-align:center;
+    color: midnightblue;
+    font-size: 28px;
+    padding: 70px 0 10px 0;
+}
+
+.login-form input[type="password"],
+.login-form input[type="text"]{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4ce;
+    margin-bottom: 10px;
+    box-sizing: border-box ;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #6f42c1;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color:#ffffff;
+
+}
+
+.btn-login:hover, .btn-login:active{
+    color: #fff;
+    background-color: #9d7fcb;
+    border-color: #61421f;
+}
+.btn-login:focus{
+    box-shadow: 0 0 0 3px rgba(145, 244, 244, 0.25);
+}
+
+.btn-register {
+    width: 100%;
+    padding: 15px;
+    background-color:rgb(45, 128, 100);
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color:#ffffff;
+
+    margin-top: 20px;
+    
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+
+}
+
+.btn-register:hover, .btn-register:active{
+    color: #fff;
+    background-color: #4de8db;
+    border-color: #108fc1;
+}
+.btn-register:focus{
+    box-shadow: 0 0 0 3px rgba(121, 82, 179, 0.25);
+}
+
+
+.container1 {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .box1, .box2 , .box3 {
+    width: 50%;
+    height: 100px;
+    background-color: lightgray;
+    text-align: center;
+  }
